@@ -9,6 +9,7 @@ const useHttp = () => {
     setError(null);
     let options;
 
+    //LEC GET requests cannot have a body!
     if (!requestConfig.method) {
       options = {};
     } else {
@@ -20,17 +21,13 @@ const useHttp = () => {
     }
 
     try {
-      //   const response = await fetch(requestConfig.url, {
-      //     method: requestConfig.method ? requestConfig.method : 'GET',
-      //     headers: requestConfig.headers ? requestConfig.headers : {},
-      //     body: request.body ? JSON.stringify(requestConfig.body) : null,
-      //   });
       const response = await fetch(requestConfig.url, options);
       if (!response.ok) {
         throw new Error('Request failed!');
       }
 
       const data = await response.json();
+      console.log(data);
       applyData(data);
       setIsLoading(false);
     } catch (err) {
