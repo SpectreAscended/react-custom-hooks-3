@@ -3,16 +3,16 @@ import { useState } from 'react';
 import Section from '../UI/Section';
 import TaskForm from './TaskForm';
 
-const NewTask = (props) => {
+const NewTask = props => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const enterTaskHandler = async (taskText) => {
+  const enterTaskHandler = async taskText => {
     setIsLoading(true);
     setError(null);
     try {
       const response = await fetch(
-        'https://react-http-6b4a6.firebaseio.com/tasks.json',
+        'https://react-http-41004-default-rtdb.firebaseio.com/tasks.json',
         {
           method: 'POST',
           body: JSON.stringify({ text: taskText }),
